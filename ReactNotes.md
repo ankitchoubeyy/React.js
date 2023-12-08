@@ -158,7 +158,7 @@ import './index.css'
 **Dyanmic Components**
 
 1. jsx allows the creation and intereactive UI components.
-2. using {} we can embed any js expression directly with the jsx. This includes variables, function calls and more.
+2. using {} we can embed any js evaluated expression directly with the jsx. This includes variables, function calls and more.
 
 **Reusable Components**
 
