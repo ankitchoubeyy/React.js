@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef} from "react";
 import "./App.css";
 
 function App() {
@@ -6,8 +6,11 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState(" ");
+  const passwordRef = useRef(null);
 
   // Note: useCallback(fn,dependencies) -->> It takes two parameters i) function, ii) Dependencies (optional)
+
+  // useRef Hook
 
   const passwordGenerator = useCallback(() => {
     let pass = " ";
@@ -21,17 +24,25 @@ function App() {
     }
 
     // Generating password
-    for (let i = 1; i < Array.length; i++) {
+    for (let i = 1; i < length; i++) {
       let char = Math.floor(Math.random() * str.length + 1);
-      pass = str.charAt(char);
+      pass += str.charAt(char);
     }
+
+    setPassword(pass);
   }, [length, numberAllowed, charAllowed, setPassword]);
 
-  // setPassword(pass); // password is sucessfully set
+  const copyPasswordToClipboard  = useCallback(() => {
+    window.navigator.clipboard.writeText(password)  // This will copy password to clipboard
+  },[password])
+
+  useEffect(() => {
+    passwordGenerator()
+  }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
   return (
     <>
-      <div className="max-w-[60%] my-[130px] mx-auto shadow-md rounded-lg px-4 py-8 text-white bg-gray-700">
+      <div className="max-w-[60%] my-[130px] mx-auto shadow-md rounded-lg px-4 py-8 text-white bg-[#7743DB]">
         <h1 className="text-center text-3xl mb-5">Password Generator</h1>
         <div className="flex shadow rounded-lg overflow-hidden mb-4">
           <input
@@ -40,9 +51,11 @@ function App() {
             className="outline-none w-full py-1 px-3 text-black"
             placeholder="password"
             readOnly
+            ref={passwordRef} // Reference of password successfully passed
           />
           {/* copy button  */}
-          <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0">
+          <button className="outline-none  px-3 py-0.5 shrink-0 glow-on-hover"
+          onClick={copyPasswordToClipboard}>
             Copy
           </button>
         </div>
@@ -50,15 +63,15 @@ function App() {
           <div className="flex items-center gap-x-1">
             <input
               type="range"
-              min={10}
-              max={100}
+              min={8}
+              max={40}
               value={length}
               className="cursor-pointer"
               onChange={(e) => {
                 setLength(e.target.value);
               }}
             />
-            <label>Lable: {length}</label>
+            <label>Password Length: {length}</label>
           </div>
           <div className="flex items-center gap-x-1">
             <input
