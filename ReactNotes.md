@@ -278,7 +278,7 @@ function HealthyFoods() {
 
 ---
 
-### 06 React Hooks
+### 06 React Props
 
 - Props are arguments passed into React components.
 - Props are passed to components via HTML attributes.
@@ -448,6 +448,34 @@ function FavoriteColor() {
 ```
 
 _**Notice**_ that we are destructuring useState from react as it is a named export.
+
+2. _useCallback()_ Hook returns a memoized callback function.
+
+Think of memoization as caching a value so that it does not need to be recalculated.
+
+This allows us to isolate resource intensive functions so that they will not automatically run on every render.
+
+The useCallback Hook **only runs when one of its dependencies update**.
+
+This can improve performance.
+
+3. _useRef()_ Hook allows you to persist values between renders.
+
+It can be used to store a mutable value that does not cause a re-render when updated.
+
+It can be used to access a DOM element directly.
+
+It is used to take reference.
+
+4. _useEffect()_ Hook allows you to perform side effects in your components.
+
+Some examples of side effects are: fetching data, directly updating the DOM, and timers.
+
+useEffect accepts two arguments. The second argument is optional.
+
+```
+useEffect(<function>, <dependency>)
+```
 
 **What Can State Hold?**
 The useState Hook can be used to keep track of strings, numbers, booleans, arrays, objects, and any combination of these!
