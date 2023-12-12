@@ -114,3 +114,23 @@ function counterReducer(state = initialState, action) {
 In the above code, we have a simple reducer called "counterReducer" that manages the state of a count variable. It takes in two arguments: state and action. The state argument represents the current state of your application, while the action argument represents the action dispatched to modify the state.
 
 The reducer then uses a switch statement to check the "type" of the action, and based on that type, it updates the state accordingly.
+
+### How to Use Redux Toolkit
+Writing Redux code can become complex and verbose, particularly as the size of an application grows. As the number of reducers and actions increase, it can become challenging to manage the different pieces and keep track of everything.
+
+Fortunately, Redux Toolkit provides a solution to this problem. It gives a more streamlined and efficient way to manage the state of your application by abstracting away some of the more complex and repetitive aspects of Redux, such as creating reducers and actions.
+
+### Advantages of Redux Toolkit
+Redux Toolkit provides several advantages over traditional Redux:
+
+It is easier to set up and requires fewer dependencies.
+Reduces boilerplate code by allowing the creation of a single file known as "slice" that combines actions and reducers.
+Provides sensible defaults for commonly used features, such as Redux Thunk and Redux DevTools. This means that you don't have to spend time configuring these features yourself, as they are already built into Redux Toolkit.
+It uses the immer library under the hood, which enables direct state mutation and eliminates the need for manually copying the state {...state} with every reducer.
+
+## How to set up Redux Toolkit
+To use Redux Toolkit in your React application, you need to install two dependencies: `@reduxjs/toolkit` and `react-redux`.
+
+The @reduxjs/toolkit package provides the necessary tools to simplify Redux development, while react-redux is needed to connect your Redux store to your React components.
+
+`npm install @reduxjs/toolkit react-redux`
